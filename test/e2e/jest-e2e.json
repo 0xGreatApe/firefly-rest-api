@@ -1,0 +1,13 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": "../../",
+  "testEnvironment": "node",
+  "collectCoverage": true,
+  "coverageDirectory": "<rootDir>/coverage",
+  "coverageReporters": ["text", "lcov"],
+  "testRegex": "test/e2e/.*\\.e2e-spec\\.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "collectCoverageFrom": ["src/**/*.ts", "!src/main.ts", "!src/**/*.module.ts"]
+}
