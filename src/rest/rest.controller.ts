@@ -116,6 +116,7 @@ export class RestController {
   }
   //Factory Data
   @Get('factory')
+  @ApiTags('Factory Data')
   @ApiOperation({ summary: 'Get factory data' })
   @ApiQuery({
     name: 'factoryId',
@@ -150,6 +151,7 @@ export class RestController {
     return await this.restService.getFactoryData(factoryId);
   }
 
+  @ApiTags('Token Data')
   @Get('token')
   @ApiOperation({ summary: 'Get token data' })
   @ApiQuery({
