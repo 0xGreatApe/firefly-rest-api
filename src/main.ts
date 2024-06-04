@@ -1,13 +1,20 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import * as path from 'path';
 import * as express from 'express';
 import * as swaggerUi from 'swagger-ui-express';
 
 const { SwaggerTheme, SwaggerThemeNameEnum } = require('swagger-themes');
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  // Serve static assets
+  app.useStaticAssets(path.join(__dirname, '..', 'public'));
+  app.setBaseViewsDir(path.join(__dirname, '..', 'views'));
+  app.setViewEngine('hbs');
 
   const config = new DocumentBuilder()
     .setTitle('Firefly Pricefeed API')
