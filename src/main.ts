@@ -22,7 +22,7 @@ async function bootstrap() {
     customCss: theme.getBuffer(SwaggerThemeNameEnum.DRACULA),
   };
 
-  SwaggerModule.setup('api-docs', app, document, options);
+  SwaggerModule.setup('/', app, document, options);
 
   await app.listen(process.env.PORT || 3000);
 }
