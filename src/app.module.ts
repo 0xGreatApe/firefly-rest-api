@@ -10,6 +10,11 @@ import { RestController } from './rest/rest.controller';
   imports: [
     GraphqlModule,
     RestModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'swagger-static'),
+      serveRoot:
+        process.env.NODE_ENV === 'development' ? '/' : '/swagger-static',
+    }),
   ],
   controllers: [RestController],
   providers: [RestService],
