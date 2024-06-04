@@ -1,8 +1,10 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-const { SwaggerTheme, SwaggerThemeNameEnum } = require('swagger-themes');
-
 import { AppModule } from './app.module';
+import * as express from 'express';
+import * as swaggerUi from 'swagger-ui-express';
+
+const { SwaggerTheme, SwaggerThemeNameEnum } = require('swagger-themes');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -22,8 +24,8 @@ async function bootstrap() {
     customCss: theme.getBuffer(SwaggerThemeNameEnum.DRACULA),
   };
 
-  // Set up Swagger UI on the root path
-  SwaggerModule.setup('/', app, document, options);
+  // Serve Swagger UI using swagger-ui-express
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(document, options));
 
   await app.listen(process.env.PORT || 3000);
 }
