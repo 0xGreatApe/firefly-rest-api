@@ -1,11 +1,19 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import * as express from 'express';
+import { join } from 'path';
 import { AppModule } from './app.module';
-import { get } from 'http';
-import { createWriteStream } from 'fs';
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json'); // Your Swagger JSON file
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // Serve Swagger UI static files
+  app.use(
+    '/swagger-ui',
+    express.static(join(__dirname, '..', 'node_modules/swagger-ui-dist')),
+  );
 
   const config = new DocumentBuilder()
     .setTitle('Firefly Pricefeed API')
@@ -16,28 +24,9 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('/swagger', app, document);
+  SwaggerModule.setup('/', app, document);
 
   await app.listen(process.env.PORT || 3000);
-
-  if (process.env.NODE_ENV === 'development') {
-    const serverUrl = `http://localhost:${process.env.PORT || 3000}`;
-
-    const files = [
-      'swagger-ui-bundle.js',
-      'swagger-ui-init.js',
-      'swagger-ui-standalone-preset.js',
-      'swagger-ui.css',
-      'index.html',
-    ];
-
-    files.forEach((file) => {
-      get(`${serverUrl}/swagger/${file}`, function (response) {
-        response.pipe(createWriteStream(`swagger-static/${file}`));
-        console.log(`Swagger UI file written to: '/swagger-static/${file}'`);
-      });
-    });
-  }
 }
 
 bootstrap();
