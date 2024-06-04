@@ -12,8 +12,7 @@ import { RestController } from './rest/rest.controller';
     RestModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'swagger-static'),
-      serveRoot:
-        process.env.NODE_ENV === 'development' ? '/' : '/swagger-static',
+      serveRoot: '/swagger-static',
     }),
   ],
   controllers: [RestController],
