@@ -10,10 +10,10 @@ import { RestController } from './rest/rest.controller';
   imports: [
     GraphqlModule,
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'), // Adjust the path as needed
+      rootPath: join(__dirname, '..', 'dist'), // Adjust the path as needed
       serveRoot: '/public/', // Optional, default is '/'
     }),
-    RestModule, // Add RestModule if it is not already included
+    RestModule,
   ],
   controllers: [RestController],
   providers: [RestService],
