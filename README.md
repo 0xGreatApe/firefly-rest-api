@@ -46,7 +46,7 @@ $ npm run test:cov
 
 ## API Documentation
 
-API documentation can be found at http://localhost:3000/api-docs after running the application. The Swagger UI provides detailed information about each endpoint and allows you to test them interactively.
+API documentation can be found at http://localhost:3000/ after running the application. The Swagger UI provides detailed information about each endpoint and allows you to test them interactively.
 
 ## API Endpoints
 
@@ -109,3 +109,7 @@ curl -X GET "http://localhost:3000/api/v1/token?tokenId=0x95cef13441be50d20ca455
 
 
 ```
+
+## Deployments
+
+The API has been setup for deploymnet on Vercel. The URL for the swagger docs on Vercel can be found [here]()

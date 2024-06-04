@@ -1,1 +1,0 @@
-{"version":3,"file":"rest.module.js","sourceRoot":"","sources":["../../src/rest/rest.module.ts"],"names":[],"mappings":";;;;;;;;;AAAA,2CAAwC;AACxC,uDAAmD;AACnD,iDAA6C;AAC7C,8DAA0D;AAOnD,IAAM,UAAU,wBAAhB,MAAM,UAAU;CAAG,CAAA;qBAAb,UAAU;IALtB,IAAA,eAAM,EAAC;QACN,OAAO,EAAE,CAAC,8BAAa,CAAC;QACxB,WAAW,EAAE,CAAC,gCAAc,CAAC;QAC7B,SAAS,EAAE,CAAC,0BAAW,CAAC;KACzB,CAAC;GACW,UAAU,CAAG"}
