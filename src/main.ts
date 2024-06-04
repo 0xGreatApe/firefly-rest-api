@@ -25,9 +25,10 @@ async function bootstrap() {
   };
 
   // Serve Swagger UI using swagger-ui-express
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(document, options));
+  app.use('/', swaggerUi.serve, swaggerUi.setup(document, options));
 
   await app.listen(process.env.PORT || 3000);
+  console.log(`Application is running on: ${await app.getUrl()}`);
 }
 
 bootstrap();
