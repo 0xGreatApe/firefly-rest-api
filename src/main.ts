@@ -10,9 +10,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Firefly Pricefeed API')
-    .setDescription(
-      'API documentation for Firefly DEX for CoinMarketCap listing',
-    )
+    .setDescription('API documentation for Firefly DEX CoinMarketCap listing')
     .setVersion('1.0')
     .build();
 
@@ -24,7 +22,7 @@ async function bootstrap() {
 
   // Serve Swagger UI with external CSS, JS, and custom theme
   SwaggerModule.setup('/', app, document, {
-    customSiteTitle: 'Api Docs',
+    customSiteTitle: 'Firefly Pricefeed API Docs',
     customfavIcon: 'https://fireflydex.io/favicon.ico',
     customJs: [
       'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js',
