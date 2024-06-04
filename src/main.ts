@@ -1,6 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import * as swaggerUi from 'swagger-ui-express';
+
+const { SwaggerTheme, SwaggerThemeNameEnum } = require('swagger-themes');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -15,10 +18,14 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
 
-  // Serve Swagger UI with external CSS and JS
+  // Get the custom CSS for the DRACULA theme
+  const theme = new SwaggerTheme();
+  const customCss = theme.getBuffer(SwaggerThemeNameEnum.DRACULA).toString();
+
+  // Serve Swagger UI with external CSS, JS, and custom theme
   SwaggerModule.setup('/', app, document, {
     customSiteTitle: 'Api Docs',
-    customfavIcon: 'https://avatars.githubusercontent.com/u/6936373?s=200&v=4',
+    customfavIcon: 'https://fireflydex.io/favicon.ico',
     customJs: [
       'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js',
       'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.js',
@@ -28,6 +35,7 @@ async function bootstrap() {
       'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.css',
       'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.css',
     ],
+    customCss,
   });
 
   await app.listen(process.env.PORT || 3000);
