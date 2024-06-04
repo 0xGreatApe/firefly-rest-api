@@ -9,10 +9,6 @@ import { RestController } from './rest/rest.controller';
 @Module({
   imports: [
     GraphqlModule,
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'dist'), // Adjust the path as needed
-      serveRoot: '/dist/', // Optional, default is '/'
-    }),
     RestModule,
   ],
   controllers: [RestController],
